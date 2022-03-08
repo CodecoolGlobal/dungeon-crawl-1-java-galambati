@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.Skeleton;
+import com.codecool.dungeoncrawl.logic.items.Coin;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -22,6 +23,9 @@ public class MapLoader {
                 if (x < line.length()) {
                     Cell cell = map.getCell(x, y);
                     switch (line.charAt(x)) {
+                        case 'i':
+                            cell.setType(CellType.ITEM);
+                            new Coin(cell);
                         case ' ':
                             cell.setType(CellType.EMPTY);
                             break;
