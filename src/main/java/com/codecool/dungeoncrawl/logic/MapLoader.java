@@ -26,6 +26,10 @@ public class MapLoader {
                         case 'i':
                             cell.setType(CellType.ITEM);
                             new Coin(cell);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.DOOR);
+                            break;
                         case ' ':
                             cell.setType(CellType.EMPTY);
                             break;
