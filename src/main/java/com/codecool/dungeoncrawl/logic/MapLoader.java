@@ -32,13 +32,12 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             break;
                         case 's':
-                            cell.setType(CellType.ENEMY);
+                            cell.setType(CellType.SKELETON);
                             new Skeleton(cell);
                             break;
                         case '@':
                             cell.setType(CellType.PLAYER);
                             map.setPlayer(new Player(cell));
-                            cell.setType(CellType.FLOOR);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
