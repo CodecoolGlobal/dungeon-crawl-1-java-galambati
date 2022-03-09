@@ -52,8 +52,8 @@ public class Main extends Application {
     public void setAction(Button button){
         button.setOnAction(e -> {
             Cell actualCell = map.getPlayer().getCell();
-            if (actualCell.getTileName().equals("item")){
-                inventory.addToInventory(actualCell.getTileName());
+            if (actualCell.getItem().getTileName().equals("coin")){
+                inventory.addToInventory(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
                 refresh();
