@@ -1,19 +1,33 @@
 package com.codecool.dungeoncrawl;
 
 import com.codecool.dungeoncrawl.logic.Cell;
+import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+
+import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.items.Inventory;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+import java.util.List;
 
 public class Main extends Application {
     GameMap map = MapLoader.loadMap();
@@ -22,19 +36,53 @@ public class Main extends Application {
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    Label Inventory = new Label();
+    Inventory inventory = new Inventory();
+
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    private void buttonShadowing(Button button) {
+        DropShadow shadow = new DropShadow();
+        button.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                e -> button.setEffect(shadow));
+        button.addEventHandler(MouseEvent.MOUSE_EXITED,
+                e -> button.setEffect(null));
+    }
+
+    public void setAction(Button button){
+        button.setOnAction(e -> {
+            Cell actualCell = map.getPlayer().getCell();
+            if (actualCell.getTileName().equals("item")){
+                inventory.addToInventory(actualCell.getTileName());
+                actualCell.setItem(null);
+                actualCell.setType(CellType.FLOOR);
+            }
+            System.out.println(inventory.getInventory());
+        });
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane ui = new GridPane();
-        ui.setPrefWidth(200);
-        ui.setPadding(new Insets(10));
+        ui.setPrefWidth(300);
+        ui.setPadding(new Insets(30));
 
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
+        ui.add(new Label("Inventory: "), 0, 1);
+        ui.add(Inventory, 0, 2);
+
+        FileInputStream input = new FileInputStream("resources/images/pickup.png");
+        Image image = new Image(input);
+        ImageView imageView = new ImageView(image);
+        Button pickUpButton = new Button("", imageView);
+        ui.add(pickUpButton, 0, 3);
+        pickUpButton.setFocusTraversable(false);
+        buttonShadowing(pickUpButton);
+        setAction(pickUpButton);
 
         BorderPane borderPane = new BorderPane();
 
@@ -79,9 +127,9 @@ public class Main extends Application {
                 Cell cell = map.getCell(x, y);
                 if (cell.getActor() != null) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
-                } else if (cell.getItem() != null){
+                } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
-                } else{
+                } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
             }
