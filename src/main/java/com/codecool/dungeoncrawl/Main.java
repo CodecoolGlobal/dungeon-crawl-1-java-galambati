@@ -5,11 +5,8 @@ import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
-import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.items.Inventory;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -27,7 +24,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
-import java.util.List;
 
 public class Main extends Application {
     GameMap map = MapLoader.loadMap();
@@ -37,6 +33,7 @@ public class Main extends Application {
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
     Label Inventory = new Label();
+    Label items = new Label();
     Inventory inventory = new Inventory();
 
 
@@ -59,6 +56,7 @@ public class Main extends Application {
                 inventory.addToInventory(actualCell.getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
+                refresh();
             }
             System.out.println(inventory.getInventory());
         });
@@ -74,12 +72,13 @@ public class Main extends Application {
         ui.add(healthLabel, 1, 0);
         ui.add(new Label("Inventory: "), 0, 1);
         ui.add(Inventory, 0, 2);
+        ui.add(items,0, 20);
 
         FileInputStream input = new FileInputStream("resources/images/pickup.png");
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
         Button pickUpButton = new Button("", imageView);
-        ui.add(pickUpButton, 0, 3);
+        ui.add(pickUpButton, 0, 5);
         pickUpButton.setFocusTraversable(false);
         buttonShadowing(pickUpButton);
         setAction(pickUpButton);
@@ -135,5 +134,6 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+        items.setText("" + inventory.getInventory());
     }
 }
