@@ -7,10 +7,12 @@ import com.codecool.dungeoncrawl.logic.Drawable;
 public abstract class Actor implements Drawable {
     protected Cell cell;
     protected int health = 10;
+    protected int attackStrength;
 
-    public Actor(Cell cell) {
+    public Actor(Cell cell, int attackStrength) {
         this.cell = cell;
         this.cell.setActor(this);
+        this.attackStrength = attackStrength;
     }
 
     public abstract void move(int dx, int dy);
@@ -29,5 +31,13 @@ public abstract class Actor implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    public int getAttackStrength() {
+        return attackStrength;
+    }
+
+    public void setAttackStrength(int attackStrength) {
+        this.attackStrength = attackStrength;
     }
 }

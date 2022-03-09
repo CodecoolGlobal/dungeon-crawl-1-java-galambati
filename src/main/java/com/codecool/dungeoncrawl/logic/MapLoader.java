@@ -33,11 +33,11 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.SKELETON);
-                            new Skeleton(cell);
+                            new Skeleton(cell, 2);
                             break;
                         case '@':
                             cell.setType(CellType.PLAYER);
-                            map.setPlayer(new Player(cell));
+                            map.setPlayer(new Player(cell, 5));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
