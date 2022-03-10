@@ -18,6 +18,8 @@ public class Ghost extends Enemy {
             nextCell.setActor(this);
             nextCell.setType(CellType.PLAYER);
             cell = nextCell;
+        } else if (nextCell.getType() == CellType.PLAYER && nextCell.getGameMap().getPlayer().getInventory().contains("sword")) {
+            nextCell.getGameMap().getPlayer().removeFromInventory("sword");
         }
     }
 

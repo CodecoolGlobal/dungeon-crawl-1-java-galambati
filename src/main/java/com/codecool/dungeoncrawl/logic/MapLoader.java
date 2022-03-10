@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.logic.actors.Scorpion;
 import com.codecool.dungeoncrawl.logic.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.items.Coin;
 import com.codecool.dungeoncrawl.logic.items.Key;
+import com.codecool.dungeoncrawl.logic.items.Sword;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -38,6 +39,10 @@ public class MapLoader {
                         case 'i':
                             cell.setType(CellType.COIN);
                             new Coin(cell);
+                            break;
+                        case 'a':
+                            cell.setType(CellType.SWORD);
+                            new Sword(cell);
                             break;
                         case ' ':
                             cell.setType(CellType.EMPTY);
