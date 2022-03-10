@@ -19,7 +19,6 @@ public class Scorpion extends Enemy {
             nextCell.setType(CellType.PLAYER);
             cell = nextCell;
         } else if (nextCell.getType() == CellType.PLAYER) {
-            System.out.println(nextCell.getActor());
             if (nextCell.getActor().health > 0) {
                 nextCell.getActor().health -= attackStrength;
                 health -= nextCell.getActor().attackStrength;

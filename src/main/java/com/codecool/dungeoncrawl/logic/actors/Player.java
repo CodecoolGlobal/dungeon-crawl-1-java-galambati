@@ -19,11 +19,9 @@ public class Player extends Actor {
             nextCell.setType(CellType.PLAYER);
             cell = nextCell;
         } else if (nextCell.getType() == CellType.SKELETON || nextCell.getType() == CellType.SCORPION) {
-            System.out.println(nextCell.getActor());
             if (nextCell.getActor().health > 0) {
                 nextCell.getActor().health -= attackStrength;
                 health -= nextCell.getActor().attackStrength;
-                System.out.println("tamadtam");
                 if (health <= 0) {
                     System.exit(0);
                 }
