@@ -28,6 +28,9 @@ public class Player extends Actor {
                 nextCell.getType() == CellType.OPENED_DOOR ||
                 nextCell.getType() == CellType.OPENED_DOOR_2 ||
                 nextCell.getType() == CellType.KEY_2 || nextCell.getType() == CellType.SWORD) {
+            if(nextCell.getType() == CellType.OPENED_DOOR_2){
+                System.exit(0);
+            }
             cell.setActor(null);
             cell.setType(CellType.FLOOR);
             nextCell.setActor(this);

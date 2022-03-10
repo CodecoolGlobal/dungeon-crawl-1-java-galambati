@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.actors.Enemy;
 
 import com.codecool.dungeoncrawl.logic.actors.Enemy;
 import javafx.application.Application;
@@ -183,8 +184,6 @@ public class Main extends Application {
         items.setText(itemsText);
         items.setTextFill(Color.DEEPSKYBLUE);
         items.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        items.setText("" + map.getPlayer().getInventory());
-
         if (map.getPlayer().getCell().getTileName().equals("opened_door")){
             level += 1;
             List<String> inventory = map.getPlayer().getInventory();
@@ -194,5 +193,4 @@ public class Main extends Application {
             map.getPlayer().setHealth(health);
         }
     }
-
 }
