@@ -11,27 +11,14 @@ public class Scorpion extends Enemy {
 
     @Override
     public void move(int dx, int dy) {
+
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getType() == CellType.FLOOR) {
             cell.setActor(null);
             cell.setType(CellType.FLOOR);
             nextCell.setActor(this);
-            nextCell.setType(CellType.PLAYER);
+            nextCell.setType(CellType.SCORPION);
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.PLAYER) {
-            if (nextCell.getActor().health > 0) {
-                nextCell.getActor().health -= attackStrength;
-                health -= nextCell.getActor().attackStrength;
-                if (health <= 0) {
-                    cell.setType(CellType.FLOOR);
-                    cell.setActor(null);
-                    cell.getGameMap().removeEnemy(this);
-                }
-                if (nextCell.getActor().health <= 0) {
-                    System.exit(0);
-                }
-            }
-
         }
     }
 

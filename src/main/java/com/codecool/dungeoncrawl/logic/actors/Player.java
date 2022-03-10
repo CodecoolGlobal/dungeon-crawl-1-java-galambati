@@ -26,9 +26,9 @@ public class Player extends Actor {
                     System.exit(0);
                 }
                 if (nextCell.getActor().health <= 0) {
+                    nextCell.getGameMap().removeEnemy((Enemy) nextCell.getActor());
                     nextCell.setType(CellType.FLOOR);
                     nextCell.setActor(null);
-                    nextCell.getGameMap().removeEnemy((Enemy) nextCell.getActor());
                 }
             }
         }
