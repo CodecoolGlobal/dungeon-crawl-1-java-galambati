@@ -70,10 +70,13 @@ public class Main extends Application {
         ui.setPadding(new Insets(30));
 
         ui.add(new Label("Health: "), 0, 0);
-        ui.add(healthLabel, 1, 0);
-        ui.add(new Label("Inventory: "), 0, 1);
-        ui.add(Inventory, 0, 2);
-        ui.add(items,0, 20);
+        ui.add(healthLabel, 0, 1);
+
+        ui.add(new Label(""), 0, 2);
+
+        ui.add(Inventory, 0, 3);
+        ui.add(new Label("\nInventory: "), 0, 6);
+        ui.add(items,0, 8);
 
         FileInputStream input = new FileInputStream("resources/images/pickup.png");
         Image image = new Image(input);
@@ -159,7 +162,11 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
-        items.setText("" + map.getPlayer().getInventory());
+        String itemsText = "";
+        for (String item : map.getPlayer().getInventory()) {
+            itemsText += " - " + item + "\n";
+        }
+        items.setText(itemsText);
     }
 
 }
