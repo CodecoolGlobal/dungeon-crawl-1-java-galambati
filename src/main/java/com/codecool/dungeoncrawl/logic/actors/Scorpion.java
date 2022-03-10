@@ -10,7 +10,7 @@ public class Scorpion extends Actor {
 
     @Override
     public String getTileName() {
-        return null;
+        return "scorpion";
     }
 
     @Override

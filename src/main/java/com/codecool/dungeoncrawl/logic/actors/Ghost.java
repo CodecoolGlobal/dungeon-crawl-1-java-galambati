@@ -10,7 +10,7 @@ public class Ghost extends Actor {
 
     @Override
     public String getTileName() {
-        return null;
+        return "ghost";
     }
 
     @Override
