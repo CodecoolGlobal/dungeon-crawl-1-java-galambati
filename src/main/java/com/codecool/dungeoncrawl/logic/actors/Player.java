@@ -13,7 +13,7 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.ITEM){
+        if (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.ITEM || nextCell.getType() == CellType.KEY){
             cell.setActor(null);
             cell.setType(CellType.FLOOR);
             nextCell.setActor(this);

@@ -29,6 +29,9 @@ public class Tiles {
         tileMap.put("player", new Tile(27, 0));
         tileMap.put("skeleton", new Tile(29, 6));
         tileMap.put("coin", new Tile(22,4));
+        tileMap.put("closed_door", new Tile(4,9));
+        tileMap.put("opened_door", new Tile(6, 9));
+        tileMap.put("key", new Tile(16, 23));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
