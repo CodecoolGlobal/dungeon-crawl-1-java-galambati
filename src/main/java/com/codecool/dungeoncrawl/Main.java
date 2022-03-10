@@ -5,6 +5,8 @@ import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
+import com.codecool.dungeoncrawl.logic.actors.Enemy;
+import com.codecool.dungeoncrawl.logic.items.Inventory;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -23,6 +25,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Main extends Application {
 
@@ -95,22 +99,46 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    private void moveEnemiesToRandomDirection() {
+        for (Enemy enemy : map.getEnemies()) {
+            int randomNumber = new Random().nextInt(4);
+            switch (randomNumber) {
+                case 0: // UP
+                    enemy.move(0, -1);
+                    break;
+                case 1: // DOWN
+                    enemy.move(0, 1);
+                    break;
+                case 2: // LEFT
+                    enemy.move(-1, 0);
+                    break;
+                case 3: // RIGHT
+                    enemy.move(1, 0);
+                    break;
+            }
+        }
+    }
+
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
+                moveEnemiesToRandomDirection();
                 refresh();
                 break;
             case DOWN:
                 map.getPlayer().move(0, 1);
+                moveEnemiesToRandomDirection();
                 refresh();
                 break;
             case LEFT:
                 map.getPlayer().move(-1, 0);
+                moveEnemiesToRandomDirection();
                 refresh();
                 break;
             case RIGHT:
                 map.getPlayer().move(1, 0);
+                moveEnemiesToRandomDirection();
                 refresh();
                 break;
         }

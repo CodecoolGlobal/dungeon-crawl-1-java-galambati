@@ -32,20 +32,18 @@ public class Player extends Actor {
             cell = nextCell;
         } else if (nextCell.getType() == CellType.CLOSED_DOOR && inventory.contains("key")) {
             nextCell.setType(CellType.OPENED_DOOR);
-        } else if (nextCell.getType() == CellType.SKELETON) {
+        } else if (nextCell.getType() == CellType.SKELETON || nextCell.getType() == CellType.SCORPION) {
             if (nextCell.getActor().health > 0) {
                 nextCell.getActor().health -= attackStrength;
                 health -= nextCell.getActor().attackStrength;
-                if (nextCell.getActor().health <= 0) {
-                    nextCell.setActor(null);
-                    nextCell.setType(CellType.FLOOR);
+                if (health <= 0) {
+                    System.exit(0);
                 }
-            } else if (nextCell.getActor().health == 0) {
-                cell.setActor(null);
-                cell.setType(CellType.FLOOR);
-                nextCell.setActor(this);
-                nextCell.setType(CellType.PLAYER);
-                cell = nextCell;
+                if (nextCell.getActor().health <= 0) {
+                    nextCell.getGameMap().removeEnemy((Enemy) nextCell.getActor());
+                    nextCell.setType(CellType.FLOOR);
+                    nextCell.setActor(null);
+                }
             }
         }
     }
