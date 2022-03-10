@@ -10,6 +10,7 @@ public enum CellType {
     GHOST("ghost"),
     PLAYER("player"),
     COIN("coin"),
+    SWORD("sword"),
     CLOSED_DOOR("closed_door"),
     OPENED_DOOR("opened_door"),
     KEY("key");

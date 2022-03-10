@@ -22,7 +22,7 @@ public class Player extends Actor {
             cell.setType(CellType.OPENED_DOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.COIN || nextCell.getType() == CellType.KEY || nextCell.getType() == CellType.OPENED_DOOR) {
+        } else if (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.COIN || nextCell.getType() == CellType.KEY || nextCell.getType() == CellType.OPENED_DOOR || nextCell.getType() == CellType.SWORD) {
             cell.setActor(null);
             cell.setType(CellType.FLOOR);
             nextCell.setActor(this);
@@ -45,6 +45,8 @@ public class Player extends Actor {
                     nextCell.setActor(null);
                 }
             }
+        } else if (nextCell.getType() == CellType.GHOST && inventory.contains("sword")) {
+            removeFromInventory("sword");
         }
     }
 
@@ -58,5 +60,9 @@ public class Player extends Actor {
 
     public void addToInventory(String item) {
         inventory.add(item);
+    }
+
+    public void removeFromInventory(String item) {
+        inventory.remove(item);
     }
 }

@@ -53,10 +53,11 @@ public class Main extends Application {
         button.setOnAction(e -> {
             Cell actualCell = map.getPlayer().getCell();
             String itemOnCell = actualCell.getItem().getTileName();
-            if (itemOnCell.equals("coin") || itemOnCell.equals("key")){
+            if (itemOnCell.equals("coin") || itemOnCell.equals("key") || itemOnCell.equals("sword")){
                 map.getPlayer().addToInventory(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
+                map.getPlayer().setAttackStrength(map.getPlayer().getAttackStrength() + 2);
                 refresh();
             }
         });
