@@ -58,6 +58,10 @@ public class Player extends Actor {
         return this.inventory;
     }
 
+    public void setInventory(List<String> inventory) {
+        this.inventory = inventory;
+    }
+
     public void addToInventory(String item) {
         inventory.add(item);
     }

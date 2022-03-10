@@ -23,10 +23,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
+import java.util.List;
 
 public class Main extends Application {
-
-    GameMap map = MapLoader.loadMap();
+    public int level = 1;
+    GameMap map = MapLoader.loadMap(level);
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
@@ -133,6 +134,15 @@ public class Main extends Application {
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
         items.setText("" + map.getPlayer().getInventory());
+
+        if (map.getPlayer().getCell().getTileName().equals("opened_door")){
+            level += 1;
+            List<String> inventory = map.getPlayer().getInventory();
+            int health = map.getPlayer().getHealth();
+            this.map = MapLoader.loadMap(level);
+            map.getPlayer().setInventory(inventory);
+            map.getPlayer().setHealth(health);
+        }
     }
 
 }

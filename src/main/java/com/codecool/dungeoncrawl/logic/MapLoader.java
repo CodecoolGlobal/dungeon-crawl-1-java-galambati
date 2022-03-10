@@ -10,10 +10,20 @@ import java.util.Scanner;
 
 public class MapLoader {
 
-    public static GameMap loadMap() {
+    private static InputStream levelSelector(int level){
+        String level1 = "/map.txt";
+        String level2 = "/map2.txt";
+        if (level == 1){
+            return MapLoader.class.getResourceAsStream(level1);
+        } else {
+            return MapLoader.class.getResourceAsStream(level2);
+        }
+    }
 
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
-        Scanner scanner = new Scanner(is);
+    public static GameMap loadMap(int level) {
+
+
+        Scanner scanner = new Scanner(levelSelector(level));
         int width = scanner.nextInt();
         int height = scanner.nextInt();
 
@@ -26,6 +36,21 @@ public class MapLoader {
                 if (x < line.length()) {
                     Cell cell = map.getCell(x, y);
                     switch (line.charAt(x)) {
+                        case 'z':
+                            cell.setType(CellType.CLOSED_DOOR_2);
+                            break;
+                        case 'n':
+                            cell.setType(CellType.KEY_2);
+                            break;
+                        case 'p':
+                            cell.setType(CellType.OPENED_DOOR_2);
+                            break;
+                        case 'o':
+                            cell.setType(CellType.OPENED_DOOR);
+                            break;
+                        case 'w':
+                            cell.setType(CellType.WATER);
+                            break;
                         case 'k':
                             cell.setType(CellType.KEY);
                             new Key(cell);
