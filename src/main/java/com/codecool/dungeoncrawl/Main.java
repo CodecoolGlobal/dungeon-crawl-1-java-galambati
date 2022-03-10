@@ -52,7 +52,7 @@ public class Main extends Application {
         button.setOnAction(e -> {
             Cell actualCell = map.getPlayer().getCell();
             String itemOnCell = actualCell.getItem().getTileName();
-            if (itemOnCell.equals("coin") || itemOnCell.equals("key")){
+            if (itemOnCell.equals("coin") || itemOnCell.equals("key_1") || itemOnCell.equals("key_2")){
                 map.getPlayer().addToInventory(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);

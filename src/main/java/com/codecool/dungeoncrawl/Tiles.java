@@ -34,7 +34,7 @@ public class Tiles {
         tileMap.put("coin", new Tile(22,4));
         tileMap.put("closed_door", new Tile(4,9));
         tileMap.put("opened_door", new Tile(6, 9));
-        tileMap.put("key", new Tile(16, 23));
+        tileMap.put("key_1", new Tile(16, 23));
         tileMap.put("water", new Tile(8, 5));
         tileMap.put("opened_door_2", new Tile(2, 9));
         tileMap.put("closed_door_2", new Tile(0,9));

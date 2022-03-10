@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.items.Coin;
 import com.codecool.dungeoncrawl.logic.items.Key;
+import com.codecool.dungeoncrawl.logic.items.Key_2;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -41,6 +42,7 @@ public class MapLoader {
                             break;
                         case 'n':
                             cell.setType(CellType.KEY_2);
+                            new Key_2(cell);
                             break;
                         case 'p':
                             cell.setType(CellType.OPENED_DOOR_2);
