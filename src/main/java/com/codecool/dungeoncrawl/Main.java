@@ -191,6 +191,7 @@ public class Main extends Application {
             this.map = MapLoader.loadMap(level);
             map.getPlayer().setInventory(inventory);
             map.getPlayer().setHealth(health);
+            refresh();
         }
     }
 }
