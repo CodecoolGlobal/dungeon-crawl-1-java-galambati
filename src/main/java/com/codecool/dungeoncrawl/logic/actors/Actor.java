@@ -1,10 +1,10 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 
 public abstract class Actor implements Drawable {
+
     protected Cell cell;
     protected int health = 10;
     protected int attackStrength;
@@ -40,4 +40,5 @@ public abstract class Actor implements Drawable {
     public void setAttackStrength(int attackStrength) {
         this.attackStrength = attackStrength;
     }
+
 }

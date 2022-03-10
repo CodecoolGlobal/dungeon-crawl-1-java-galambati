@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
 public class Cell implements Drawable {
+
     private CellType type;
     private Actor actor;
     private Item item;
@@ -45,11 +46,6 @@ public class Cell implements Drawable {
         return gameMap.getCell(x + dx, y + dy);
     }
 
-    @Override
-    public String getTileName() {
-        return type.getTileName();
-    }
-
     public int getX() {
         return x;
     }
@@ -57,4 +53,10 @@ public class Cell implements Drawable {
     public int getY() {
         return y;
     }
+
+    @Override
+    public String getTileName() {
+        return type.getTileName();
+    }
+
 }

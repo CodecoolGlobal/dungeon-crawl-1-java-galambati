@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 
 public class Main extends Application {
+
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
@@ -35,7 +36,6 @@ public class Main extends Application {
     Label Inventory = new Label();
     Label items = new Label();
     Inventory inventory = new Inventory();
-
 
     public static void main(String[] args) {
         launch(args);
@@ -136,4 +136,5 @@ public class Main extends Application {
         healthLabel.setText("" + map.getPlayer().getHealth());
         items.setText("" + inventory.getInventory());
     }
+
 }

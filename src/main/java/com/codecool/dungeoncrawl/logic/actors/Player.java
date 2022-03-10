@@ -2,12 +2,15 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
-import com.codecool.dungeoncrawl.logic.GameMap;
 
 public class Player extends Actor {
 
     public Player(Cell cell, int attackStrength) {
         super(cell, attackStrength);
+    }
+
+    public String getTileName() {
+        return "player";
     }
 
     @Override
@@ -37,7 +40,4 @@ public class Player extends Actor {
         }
     }
 
-    public String getTileName() {
-        return "player";
-    }
 }

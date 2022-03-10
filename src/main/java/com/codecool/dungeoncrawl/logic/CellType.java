@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.logic;
 
 public enum CellType {
+
     EMPTY("empty"),
     FLOOR("floor"),
     WALL("wall"),
@@ -17,4 +18,5 @@ public enum CellType {
     public String getTileName() {
         return tileName;
     }
+
 }
