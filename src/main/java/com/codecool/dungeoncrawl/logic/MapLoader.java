@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.items.Coin;
+import com.codecool.dungeoncrawl.logic.items.Key;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class MapLoader {
 
     public static GameMap loadMap() {
+
         InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
@@ -24,8 +26,15 @@ public class MapLoader {
                 if (x < line.length()) {
                     Cell cell = map.getCell(x, y);
                     switch (line.charAt(x)) {
+                        case 'k':
+                            cell.setType(CellType.KEY);
+                            new Key(cell);
+                            break;
+                        case 'x':
+                            cell.setType(CellType.CLOSED_DOOR);
+                            break;
                         case 'i':
-                            cell.setType(CellType.ITEM);
+                            cell.setType(CellType.COIN);
                             new Coin(cell);
                             break;
                         case ' ':

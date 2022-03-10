@@ -5,7 +5,6 @@ import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
-import com.codecool.dungeoncrawl.logic.items.Inventory;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -35,7 +34,6 @@ public class Main extends Application {
     Label healthLabel = new Label();
     Label Inventory = new Label();
     Label items = new Label();
-    Inventory inventory = new Inventory();
 
     public static void main(String[] args) {
         launch(args);
@@ -52,13 +50,13 @@ public class Main extends Application {
     public void setAction(Button button){
         button.setOnAction(e -> {
             Cell actualCell = map.getPlayer().getCell();
-            if (actualCell.getItem().getTileName().equals("coin")){
-                inventory.addToInventory(actualCell.getItem().getTileName());
+            String itemOnCell = actualCell.getItem().getTileName();
+            if (itemOnCell.equals("coin") || itemOnCell.equals("key")){
+                map.getPlayer().addToInventory(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
                 refresh();
             }
-            System.out.println(inventory.getInventory());
         });
     }
 
@@ -134,7 +132,7 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
-        items.setText("" + inventory.getInventory());
+        items.setText("" + map.getPlayer().getInventory());
     }
 
 }

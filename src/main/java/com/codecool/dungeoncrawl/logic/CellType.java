@@ -7,7 +7,10 @@ public enum CellType {
     WALL("wall"),
     SKELETON("skeleton"),
     PLAYER("player"),
-    ITEM("item");
+    COIN("coin"),
+    CLOSED_DOOR("closed_door"),
+    OPENED_DOOR("opened_door"),
+    KEY("key");
 
     private final String tileName;
 
