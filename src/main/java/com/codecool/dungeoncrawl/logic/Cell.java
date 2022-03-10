@@ -8,6 +8,7 @@ public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
     private Item item;
+
     private GameMap gameMap;
     private int x, y;
 
@@ -52,6 +53,10 @@ public class Cell implements Drawable {
 
     public int getY() {
         return y;
+    }
+
+    public GameMap getGameMap() {
+        return gameMap;
     }
 
     @Override

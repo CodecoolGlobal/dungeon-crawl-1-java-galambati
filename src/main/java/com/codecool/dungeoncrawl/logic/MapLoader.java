@@ -41,15 +41,15 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.SKELETON);
-                            new Skeleton(cell, 2);
+                            map.addEnemy(new Skeleton(cell, 2));
                             break;
                         case 'r':
                             cell.setType(CellType.SCORPION);
-                            new Scorpion(cell, 3);
+                            map.addEnemy(new Scorpion(cell, 3));
                             break;
                         case 'h':
                             cell.setType(CellType.GHOST);
-                            new Ghost(cell, 0);
+                            map.addEnemy(new Ghost(cell, 0));
                             break;
                         case '@':
                             cell.setType(CellType.PLAYER);

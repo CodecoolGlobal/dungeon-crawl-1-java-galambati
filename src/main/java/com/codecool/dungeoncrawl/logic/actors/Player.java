@@ -9,10 +9,6 @@ public class Player extends Actor {
         super(cell, attackStrength);
     }
 
-    public String getTileName() {
-        return "player";
-    }
-
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
@@ -22,16 +18,26 @@ public class Player extends Actor {
             nextCell.setActor(this);
             nextCell.setType(CellType.PLAYER);
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.SKELETON) {
+        } else if (nextCell.getType() == CellType.SKELETON || nextCell.getType() == CellType.SCORPION) {
+            System.out.println(nextCell.getActor());
             if (nextCell.getActor().health > 0) {
                 nextCell.getActor().health -= attackStrength;
                 health -= nextCell.getActor().attackStrength;
+                System.out.println("tamadtam");
+                if (health <= 0) {
+                    System.exit(0);
+                }
                 if (nextCell.getActor().health <= 0) {
-                    nextCell.setActor(null);
                     nextCell.setType(CellType.FLOOR);
+                    nextCell.setActor(null);
+                    nextCell.getGameMap().removeEnemy((Enemy) nextCell.getActor());
                 }
             }
         }
+    }
+
+    public String getTileName() {
+        return "player";
     }
 
 }
