@@ -5,7 +5,6 @@ import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
-import com.codecool.dungeoncrawl.logic.actors.Enemy;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -24,11 +23,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
+import java.util.List;
 import java.util.Random;
 
 public class Main extends Application {
-
-    GameMap map = MapLoader.loadMap();
+    public int level = 1;
+    GameMap map = MapLoader.loadMap(level);
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
@@ -53,7 +53,7 @@ public class Main extends Application {
         button.setOnAction(e -> {
             Cell actualCell = map.getPlayer().getCell();
             String itemOnCell = actualCell.getItem().getTileName();
-            if (itemOnCell.equals("coin") || itemOnCell.equals("key") || itemOnCell.equals("sword")){
+            if (itemOnCell.equals("coin") || itemOnCell.equals("key_1") || itemOnCell.equals("key_2") || itemOnCell.equals("sword")){
                 map.getPlayer().addToInventory(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
@@ -167,6 +167,16 @@ public class Main extends Application {
             itemsText += " - " + item + "\n";
         }
         items.setText(itemsText);
+        items.setText("" + map.getPlayer().getInventory());
+
+        if (map.getPlayer().getCell().getTileName().equals("opened_door")){
+            level += 1;
+            List<String> inventory = map.getPlayer().getInventory();
+            int health = map.getPlayer().getHealth();
+            this.map = MapLoader.loadMap(level);
+            map.getPlayer().setInventory(inventory);
+            map.getPlayer().setHealth(health);
+        }
     }
 
 }

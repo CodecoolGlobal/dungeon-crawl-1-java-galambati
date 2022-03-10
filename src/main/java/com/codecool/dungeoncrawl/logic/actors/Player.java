@@ -22,16 +22,23 @@ public class Player extends Actor {
             cell.setType(CellType.OPENED_DOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.COIN || nextCell.getType() == CellType.KEY || nextCell.getType() == CellType.OPENED_DOOR || nextCell.getType() == CellType.SWORD) {
+        } else if (nextCell.getType() == CellType.FLOOR ||
+                nextCell.getType() == CellType.COIN ||
+                nextCell.getType() == CellType.KEY ||
+                nextCell.getType() == CellType.OPENED_DOOR ||
+                nextCell.getType() == CellType.OPENED_DOOR_2 ||
+                nextCell.getType() == CellType.KEY_2 || nextCell.getType() == CellType.SWORD) {
             cell.setActor(null);
             cell.setType(CellType.FLOOR);
             nextCell.setActor(this);
-            if (nextCell.getType() != CellType.OPENED_DOOR){
-                nextCell.setType(CellType.PLAYER);
+            if (nextCell.getType() != CellType.OPENED_DOOR || nextCell.getType() != CellType.OPENED_DOOR_2){
+                nextCell.setActor(this);
             }
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.CLOSED_DOOR && inventory.contains("key")) {
+        } else if (nextCell.getType() == CellType.CLOSED_DOOR && inventory.contains("key_1")) {
             nextCell.setType(CellType.OPENED_DOOR);
+        } else if (nextCell.getType() == CellType.CLOSED_DOOR_2 && inventory.contains("key_2")){
+            nextCell.setType(CellType.OPENED_DOOR_2);
         } else if (nextCell.getType() == CellType.SKELETON || nextCell.getType() == CellType.SCORPION) {
             if (nextCell.getActor().health > 0) {
                 nextCell.getActor().health -= attackStrength;
@@ -56,6 +63,10 @@ public class Player extends Actor {
 
     public List<String> getInventory() {
         return this.inventory;
+    }
+
+    public void setInventory(List<String> inventory) {
+        this.inventory = inventory;
     }
 
     public void addToInventory(String item) {
