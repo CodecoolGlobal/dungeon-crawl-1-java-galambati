@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 
+import com.codecool.dungeoncrawl.logic.actors.Enemy;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -20,6 +21,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -66,17 +69,28 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane ui = new GridPane();
-        ui.setPrefWidth(300);
+        ui.setStyle("-fx-background-color: #472D3C;");
+        ui.setPrefWidth(180);
         ui.setPadding(new Insets(30));
 
-        ui.add(new Label("Health: "), 0, 0);
-        ui.add(healthLabel, 0, 1);
+        Label healthText = new Label("Health");
+        ui.add(healthText, 0, 0);
+        healthText.setTextFill(Color.WHITE);
+        healthText.setFont(Font.font("Arial", FontWeight.BOLD, 21));
 
-        ui.add(new Label(""), 0, 2);
+        healthLabel.setTextFill(Color.GOLD);
+        ui.add(healthLabel, 0, 1);
+        healthLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+
+        ui.add(new Label("\n\n"), 0, 2);
 
         ui.add(Inventory, 0, 3);
-        ui.add(new Label("\nInventory: "), 0, 6);
+
+        Label inventoryLabel = new Label("\nInventory");
+        ui.add(inventoryLabel, 0, 6);
         ui.add(items,0, 8);
+        inventoryLabel.setTextFill(Color.WHITE);
+        inventoryLabel.setFont(Font.font("Arial", FontWeight.BOLD, 21));
 
         FileInputStream input = new FileInputStream("resources/images/pickup.png");
         Image image = new Image(input);
@@ -167,6 +181,8 @@ public class Main extends Application {
             itemsText += " - " + item + "\n";
         }
         items.setText(itemsText);
+        items.setTextFill(Color.DEEPSKYBLUE);
+        items.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         items.setText("" + map.getPlayer().getInventory());
 
         if (map.getPlayer().getCell().getTileName().equals("opened_door")){
