@@ -30,12 +30,6 @@ public class Player extends Actor {
                     nextCell.setActor(null);
                     nextCell.setType(CellType.FLOOR);
                 }
-            } else if (nextCell.getActor().health == 0) {
-                cell.setActor(null);
-                cell.setType(CellType.FLOOR);
-                nextCell.setActor(this);
-                nextCell.setType(CellType.PLAYER);
-                cell = nextCell;
             }
         }
     }
