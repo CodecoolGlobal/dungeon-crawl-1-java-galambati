@@ -5,24 +5,13 @@ import com.codecool.dungeoncrawl.logic.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.items.Coin;
 import com.codecool.dungeoncrawl.logic.items.Key;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class MapLoader {
     public static GameMap loadMap() {
+
         InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
-
-//        String text = new BufferedReader(
-//                new InputStreamReader(is, StandardCharsets.UTF_8))
-//                .lines()
-//                .collect(Collectors.joining("\n"));
-//
-//        System.out.println(text);
-
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -44,7 +33,7 @@ public class MapLoader {
                             cell.setType(CellType.CLOSED_DOOR);
                             break;
                         case 'i':
-                            cell.setType(CellType.ITEM);
+                            cell.setType(CellType.COIN);
                             new Coin(cell);
                             break;
                         case ' ':
