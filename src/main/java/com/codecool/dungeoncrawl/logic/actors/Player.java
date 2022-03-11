@@ -109,6 +109,13 @@ public class Player extends Actor {
     }
 
     public void removeFromInventory2(String item) {
-
+        for (String i : inventory2.keySet()) {
+            if (i.equals(item)){
+                inventory2.put(item ,inventory2.get(item) - 1);
+                if (inventory2.get(item) < 1){
+                    inventory2.remove(item);
+                }
+            }
+        }
     }
 }
