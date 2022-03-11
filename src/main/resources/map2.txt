@@ -1,4 +1,4 @@
-29 20
+30 20
 #############
 #...........##############
 #..h.......r......s...a..#
@@ -8,9 +8,9 @@
 #.......s..##............#
 #..........#wwwwww.......#
 #####..wwwwwwwwwwwww...###
-    #..wwwwwwwwwwwww....#####
-    #s.wwwwwwwwwwwww.......n#
-    #..wwwwwwwwwwwww#########
+    #..wwwwwwwwwwwww....######
+    #s.wwwwwwwwwwwww.......n.#
+    #..wwwwwwwwwwwww##########
   ###..wwwwwwwwwww.......#
   #.......wwwwwwww..s....#
   #...h...wwwwwwww.......#
