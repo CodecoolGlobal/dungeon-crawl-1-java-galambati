@@ -186,12 +186,19 @@ public class Main extends Application {
         items.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         if (map.getPlayer().getCell().getTileName().equals("opened_door")){
             level += 1;
-            List<String> inventory = map.getPlayer().getInventory();
-            int health = map.getPlayer().getHealth();
-            this.map = MapLoader.loadMap(level);
-            map.getPlayer().setInventory(inventory);
-            map.getPlayer().setHealth(health);
-            refresh();
+            setNextMap();
+        } else if (map.getPlayer().getCell().getTileName().equals("opened_door_2")){
+            level -=1;
+            setNextMap();
         }
+    }
+
+    private void setNextMap(){
+        List<String> inventory = map.getPlayer().getInventory();
+        int health = map.getPlayer().getHealth();
+        this.map = MapLoader.loadMap(level);
+        map.getPlayer().setInventory(inventory);
+        map.getPlayer().setHealth(health);
+        refresh();
     }
 }
