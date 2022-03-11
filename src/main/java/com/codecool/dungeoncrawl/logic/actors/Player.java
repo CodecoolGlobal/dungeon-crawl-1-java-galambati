@@ -37,8 +37,10 @@ public class Player extends Actor {
             cell.setActor(null);
             cell.setType(CellType.FLOOR);
             nextCell.setActor(this);
-            nextCell.setType(CellType.PLAYER);
-            if (nextCell.getType() != CellType.OPENED_DOOR || nextCell.getType() != CellType.OPENED_DOOR_2) {
+            if (nextCell.getType() != CellType.OPENED_DOOR && nextCell.getType() != CellType.OPENED_DOOR_2){
+                nextCell.setType(CellType.PLAYER);
+            }
+            if (nextCell.getType() == CellType.OPENED_DOOR || nextCell.getType() == CellType.OPENED_DOOR_2) {
                 nextCell.setActor(this);
             }
             cell = nextCell;
