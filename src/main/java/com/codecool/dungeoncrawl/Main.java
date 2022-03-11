@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Main extends Application {
-    public int level = 1;
+    private int level = 1;
     GameMap map = MapLoader.loadMap(level);
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
