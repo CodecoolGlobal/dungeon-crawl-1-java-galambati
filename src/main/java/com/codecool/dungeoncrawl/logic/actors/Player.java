@@ -3,13 +3,10 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Player extends Actor {
 
-    private List<String> inventory = new ArrayList<>();
     private HashMap<String, Integer> inventory2 = new HashMap<>();
 
     public Player(Cell cell, int attackStrength) {
@@ -46,9 +43,9 @@ public class Player extends Actor {
                 nextCell.setActor(this);
             }
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.CLOSED_DOOR && inventory.contains("key 1")) {
+        } else if (nextCell.getType() == CellType.CLOSED_DOOR && inventory2.containsKey("key 1")) {
             nextCell.setType(CellType.OPENED_DOOR);
-        } else if (nextCell.getType() == CellType.CLOSED_DOOR_2 && inventory.contains("key 2")) {
+        } else if (nextCell.getType() == CellType.CLOSED_DOOR_2 && inventory2.containsKey("key 2")) {
             nextCell.setType(CellType.OPENED_DOOR_3);
         } else if (nextCell.getType() == CellType.SKELETON || nextCell.getType() == CellType.SCORPION) {
             if (nextCell.getActor().health > 0) {
@@ -63,31 +60,13 @@ public class Player extends Actor {
                     nextCell.setActor(null);
                 }
             }
-        } else if (nextCell.getType() == CellType.GHOST && inventory.contains("sword")) {
-            System.out.println(cell.getActor());
-            System.out.println("bejon");
-            removeFromInventory("sword");
+        } else if (nextCell.getType() == CellType.GHOST && inventory2.containsKey("sword")) {
+            removeFromInventory2("sword");
         }
     }
 
     public String getTileName() {
         return "player";
-    }
-
-    public List<String> getInventory() {
-        return this.inventory;
-    }
-
-    public void setInventory(List<String> inventory) {
-        this.inventory = inventory;
-    }
-
-    public void addToInventory(String item) {
-        inventory.add(item);
-    }
-
-    public void removeFromInventory(String item) {
-        inventory.remove(item);
     }
 
     public HashMap<String, Integer> getInventory2() {
@@ -109,11 +88,13 @@ public class Player extends Actor {
     }
 
     public void removeFromInventory2(String item) {
-        for (String i : inventory2.keySet()) {
-            if (i.equals(item)){
-                inventory2.put(item ,inventory2.get(item) - 1);
-                if (inventory2.get(item) < 1){
-                    inventory2.remove(item);
+        if (!this.inventory2.isEmpty()){
+            for (String i : inventory2.keySet()) {
+                if (i.equals(item)){
+                    inventory2.put(item ,inventory2.get(item) - 1);
+                    if (inventory2.get(item) < 1){
+                        inventory2.remove(item);
+                    }
                 }
             }
         }

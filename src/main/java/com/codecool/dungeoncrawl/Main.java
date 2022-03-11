@@ -26,6 +26,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -58,7 +59,6 @@ public class Main extends Application {
             Cell actualCell = map.getPlayer().getCell();
             String itemOnCell = actualCell.getItem().getTileName();
             if (itemOnCell.equals("coin") || itemOnCell.equals("key 1") || itemOnCell.equals("key 2") || itemOnCell.equals("sword")) {
-                map.getPlayer().addToInventory(actualCell.getItem().getTileName());
                 map.getPlayer().addToInventory2(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
@@ -190,8 +190,12 @@ public class Main extends Application {
         healthLabel.setText("" + map.getPlayer().getHealth());
         strengthLabel.setText("" + map.getPlayer().getAttackStrength());
         String itemsText = "";
-        for (String item : map.getPlayer().getInventory()) {
-            itemsText += " - " + item + "\n";
+        for (String item : map.getPlayer().getInventory2().keySet()) {
+            if (map.getPlayer().getInventory2().get(item) == 1){
+                itemsText += " - " + item + "\n";
+            } else {
+                itemsText += " - " + item + ": " + map.getPlayer().getInventory2().get(item) +"\n";
+            }
         }
         items.setText(itemsText);
         items.setTextFill(Color.DEEPSKYBLUE);
@@ -206,11 +210,11 @@ public class Main extends Application {
     }
 
     private void setNextMap() {
-        List<String> inventory = map.getPlayer().getInventory();
+        HashMap<String, Integer> inventory = map.getPlayer().getInventory2();
         int health = map.getPlayer().getHealth();
         int strength = map.getPlayer().getAttackStrength();
         this.map = MapLoader.loadMap(level);
-        map.getPlayer().setInventory(inventory);
+        map.getPlayer().setInventory2(inventory);
         map.getPlayer().setHealth(health);
         map.getPlayer().setAttackStrength(strength);
         refresh();

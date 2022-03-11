@@ -18,8 +18,7 @@ public class Ghost extends Enemy {
             nextCell.setActor(this);
             nextCell.setType(CellType.PLAYER);
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.PLAYER && nextCell.getGameMap().getPlayer().getInventory().contains("sword")) {
-            nextCell.getGameMap().getPlayer().removeFromInventory("sword");
+        } else if (nextCell.getType() == CellType.PLAYER && nextCell.getGameMap().getPlayer().getInventory2().containsKey("sword")) {
             nextCell.getGameMap().getPlayer().removeFromInventory2("sword");
             System.out.println(nextCell.getGameMap().getPlayer().getInventory2());
             nextCell.getGameMap().getPlayer().setAttackStrength(nextCell.getGameMap().getPlayer().getAttackStrength() - 2);
