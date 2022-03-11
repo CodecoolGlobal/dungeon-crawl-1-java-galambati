@@ -9,7 +9,7 @@
 #..........#wwwwww.......#
 #####..wwwwwwwwwwwww...###
     #..wwwwwwwwwwwww....######
-    #s.wwwwwwwwwwwww.......n.#
+    #s.wwwwwwwwwwwww........n#
     #..wwwwwwwwwwwww##########
   ###..wwwwwwwwwww.......#
   #.......wwwwwwww..s....#

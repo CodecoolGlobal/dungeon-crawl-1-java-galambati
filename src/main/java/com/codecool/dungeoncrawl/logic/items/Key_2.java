@@ -9,6 +9,6 @@ public class Key_2 extends Item{
 
     @Override
     public String getTileName(){
-        return "key_2";
+        return "key 2";
     }
 }

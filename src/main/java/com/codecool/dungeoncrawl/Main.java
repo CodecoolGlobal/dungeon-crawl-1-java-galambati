@@ -38,6 +38,7 @@ public class Main extends Application {
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    Label strengthLabel = new Label();
     Label Inventory = new Label();
     Label items = new Label();
 
@@ -53,15 +54,17 @@ public class Main extends Application {
                 e -> button.setEffect(null));
     }
 
-    public void setAction(Button button){
+    public void setAction(Button button) {
         button.setOnAction(e -> {
             Cell actualCell = map.getPlayer().getCell();
             String itemOnCell = actualCell.getItem().getTileName();
-            if (itemOnCell.equals("coin") || itemOnCell.equals("key_1") || itemOnCell.equals("key_2") || itemOnCell.equals("sword")){
+            if (itemOnCell.equals("coin") || itemOnCell.equals("key 1") || itemOnCell.equals("key 2") || itemOnCell.equals("sword")) {
                 map.getPlayer().addToInventory(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
-                map.getPlayer().setAttackStrength(map.getPlayer().getAttackStrength() + 2);
+                if (itemOnCell.equals("sword")) {
+                    map.getPlayer().setAttackStrength(map.getPlayer().getAttackStrength() + 2);
+                }
                 refresh();
             }
         });
@@ -74,6 +77,14 @@ public class Main extends Application {
         ui.setPrefWidth(180);
         ui.setPadding(new Insets(30));
 
+        Label strengthText = new Label("Strength");
+        ui.add(strengthText, 0, 2);
+        strengthText.setTextFill(Color.WHITE);
+        strengthText.setFont(Font.font("Arial", FontWeight.BOLD, 21));
+        strengthLabel.setTextFill(Color.GOLD);
+        ui.add(strengthLabel, 0, 3);
+        strengthLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+
         Label healthText = new Label("Health");
         ui.add(healthText, 0, 0);
         healthText.setTextFill(Color.WHITE);
@@ -83,13 +94,13 @@ public class Main extends Application {
         ui.add(healthLabel, 0, 1);
         healthLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
-        ui.add(new Label("\n\n"), 0, 2);
+        ui.add(new Label("\n\n"), 0, 4);
 
-        ui.add(Inventory, 0, 3);
+        ui.add(Inventory, 0, 5);
 
         Label inventoryLabel = new Label("\nInventory");
-        ui.add(inventoryLabel, 0, 6);
-        ui.add(items,0, 8);
+        ui.add(inventoryLabel, 0, 8);
+        ui.add(items, 0, 10);
         inventoryLabel.setTextFill(Color.WHITE);
         inventoryLabel.setFont(Font.font("Arial", FontWeight.BOLD, 21));
 
@@ -97,7 +108,7 @@ public class Main extends Application {
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
         Button pickUpButton = new Button("", imageView);
-        ui.add(pickUpButton, 0, 5);
+        ui.add(pickUpButton, 0, 7);
         pickUpButton.setFocusTraversable(false);
         buttonShadowing(pickUpButton);
         setAction(pickUpButton);
@@ -177,6 +188,7 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+        strengthLabel.setText("" + map.getPlayer().getAttackStrength());
         String itemsText = "";
         for (String item : map.getPlayer().getInventory()) {
             itemsText += " - " + item + "\n";
@@ -184,21 +196,23 @@ public class Main extends Application {
         items.setText(itemsText);
         items.setTextFill(Color.DEEPSKYBLUE);
         items.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        if (map.getPlayer().getCell().getTileName().equals("opened_door")){
+        if (map.getPlayer().getCell().getTileName().equals("opened_door")) {
             level += 1;
             setNextMap();
-        } else if (map.getPlayer().getCell().getTileName().equals("opened_door_2")){
-            level -=1;
+        } else if (map.getPlayer().getCell().getTileName().equals("opened_door_2")) {
+            level -= 1;
             setNextMap();
         }
     }
 
-    private void setNextMap(){
+    private void setNextMap() {
         List<String> inventory = map.getPlayer().getInventory();
         int health = map.getPlayer().getHealth();
+        int strength = map.getPlayer().getAttackStrength();
         this.map = MapLoader.loadMap(level);
         map.getPlayer().setInventory(inventory);
         map.getPlayer().setHealth(health);
+        map.getPlayer().setAttackStrength(strength);
         refresh();
     }
 }

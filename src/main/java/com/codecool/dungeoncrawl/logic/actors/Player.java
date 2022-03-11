@@ -44,13 +44,12 @@ public class Player extends Actor {
                 nextCell.setActor(this);
             }
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.CLOSED_DOOR && inventory.contains("key_1")) {
+        } else if (nextCell.getType() == CellType.CLOSED_DOOR && inventory.contains("key 1")) {
             nextCell.setType(CellType.OPENED_DOOR);
-        } else if (nextCell.getType() == CellType.CLOSED_DOOR_2 && inventory.contains("key_2")) {
+        } else if (nextCell.getType() == CellType.CLOSED_DOOR_2 && inventory.contains("key 2")) {
             nextCell.setType(CellType.OPENED_DOOR_3);
         } else if (nextCell.getType() == CellType.SKELETON || nextCell.getType() == CellType.SCORPION) {
             if (nextCell.getActor().health > 0) {
-                System.out.println(nextCell.getType());
                 nextCell.getActor().health -= attackStrength;
                 health -= nextCell.getActor().attackStrength;
                 if (health <= 0) {
@@ -63,6 +62,8 @@ public class Player extends Actor {
                 }
             }
         } else if (nextCell.getType() == CellType.GHOST && inventory.contains("sword")) {
+            System.out.println(cell.getActor());
+            System.out.println("bejon");
             removeFromInventory("sword");
         }
     }
