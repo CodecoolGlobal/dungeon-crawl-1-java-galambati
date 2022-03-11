@@ -4,11 +4,13 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Player extends Actor {
 
     private List<String> inventory = new ArrayList<>();
+    private HashMap<String, Integer> inventory2 = new HashMap<>();
 
     public Player(Cell cell, int attackStrength) {
         super(cell, attackStrength);
@@ -86,5 +88,27 @@ public class Player extends Actor {
 
     public void removeFromInventory(String item) {
         inventory.remove(item);
+    }
+
+    public HashMap<String, Integer> getInventory2() {
+        return inventory2;
+    }
+
+    public void setInventory2(HashMap<String, Integer> inventory2) {
+        this.inventory2 = inventory2;
+    }
+
+    public void addToInventory2(String item) {
+        if (!inventory2.containsKey(item)){
+            inventory2.put(item, 1);
+            System.out.println(inventory2);
+        } else {
+            inventory2.put(item, inventory2.get(item) + 1);
+            System.out.println(inventory2);
+        }
+    }
+
+    public void removeFromInventory2(String item) {
+
     }
 }

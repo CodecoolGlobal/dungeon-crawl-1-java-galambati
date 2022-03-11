@@ -59,6 +59,7 @@ public class Main extends Application {
             String itemOnCell = actualCell.getItem().getTileName();
             if (itemOnCell.equals("coin") || itemOnCell.equals("key 1") || itemOnCell.equals("key 2") || itemOnCell.equals("sword")) {
                 map.getPlayer().addToInventory(actualCell.getItem().getTileName());
+                map.getPlayer().addToInventory2(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
                 if (itemOnCell.equals("sword")) {
