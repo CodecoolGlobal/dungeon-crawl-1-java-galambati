@@ -22,7 +22,8 @@ public class Player extends Actor {
             cell.setType(CellType.OPENED_DOOR);
             nextCell.setActor(this);
             cell = nextCell;
-        } else if (nextCell.getType() == CellType.FLOOR ||
+        }
+        if (nextCell.getType() == CellType.FLOOR ||
                 nextCell.getType() == CellType.COIN ||
                 nextCell.getType() == CellType.KEY ||
                 nextCell.getType() == CellType.OPENED_DOOR ||
@@ -36,6 +37,7 @@ public class Player extends Actor {
             cell.setActor(null);
             cell.setType(CellType.FLOOR);
             nextCell.setActor(this);
+            nextCell.setType(CellType.PLAYER);
             if (nextCell.getType() != CellType.OPENED_DOOR || nextCell.getType() != CellType.OPENED_DOOR_2) {
                 nextCell.setActor(this);
             }
@@ -46,6 +48,7 @@ public class Player extends Actor {
             nextCell.setType(CellType.OPENED_DOOR_3);
         } else if (nextCell.getType() == CellType.SKELETON || nextCell.getType() == CellType.SCORPION) {
             if (nextCell.getActor().health > 0) {
+                System.out.println(nextCell.getType());
                 nextCell.getActor().health -= attackStrength;
                 health -= nextCell.getActor().attackStrength;
                 if (health <= 0) {
