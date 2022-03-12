@@ -12,4 +12,9 @@ public class Sword extends Item {
     public String getTileName() {
         return "sword";
     }
+
+    @Override
+    public String getIsCollectable() {
+        return "yes";
+    }
 }

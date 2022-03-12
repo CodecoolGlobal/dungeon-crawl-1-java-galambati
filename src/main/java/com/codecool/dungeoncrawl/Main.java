@@ -27,7 +27,6 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 public class Main extends Application {
@@ -57,13 +56,15 @@ public class Main extends Application {
     public void setAction(Button button) {
         button.setOnAction(e -> {
             Cell actualCell = map.getPlayer().getCell();
-            String itemOnCell = actualCell.getItem().getTileName();
-            if (itemOnCell.equals("coin") || itemOnCell.equals("key 1") || itemOnCell.equals("key 2") || itemOnCell.equals("sword")) {
+            String itemName = actualCell.getItem().getTileName();
+            if (actualCell.getItem().getIsCollectable().equals("yes")) {
                 map.getPlayer().addToInventory2(actualCell.getItem().getTileName());
                 actualCell.setItem(null);
                 actualCell.setType(CellType.FLOOR);
-                if (itemOnCell.equals("sword")) {
+                if (itemName.equals("sword")) {
                     map.getPlayer().setAttackStrength(map.getPlayer().getAttackStrength() + 2);
+                } else if (itemName.equals("apple")){
+                    map.getPlayer().setHealth(map.getPlayer().getHealth() + 3);
                 }
                 refresh();
             }

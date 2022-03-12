@@ -12,4 +12,9 @@ public class Apple extends Item {
     public String getTileName() {
         return "apple";
     }
+
+    @Override
+    public String getIsCollectable() {
+        return "yes";
+    }
 }

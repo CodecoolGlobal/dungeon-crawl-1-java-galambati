@@ -11,4 +11,9 @@ public class Key_2 extends Item{
     public String getTileName(){
         return "key 2";
     }
+
+    @Override
+    public String getIsCollectable() {
+        return "yes";
+    }
 }

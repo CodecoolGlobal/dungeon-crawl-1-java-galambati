@@ -73,10 +73,8 @@ public class Player extends Actor {
     public void addToInventory2(String item) {
         if (!inventory2.containsKey(item)){
             inventory2.put(item, 1);
-            System.out.println(inventory2);
         } else {
             inventory2.put(item, inventory2.get(item) + 1);
-            System.out.println(inventory2);
         }
     }
 
@@ -84,9 +82,11 @@ public class Player extends Actor {
         if (!this.inventory2.isEmpty()){
             for (String i : inventory2.keySet()) {
                 if (i.equals(item)){
-                    inventory2.put(item ,inventory2.get(item) - 1);
-                    if (inventory2.get(item) < 1){
+                    if (inventory2.get(item) == 1){
                         inventory2.remove(item);
+                        break;
+                    } else {
+                        inventory2.put(item ,inventory2.get(item) - 1);
                     }
                 }
             }

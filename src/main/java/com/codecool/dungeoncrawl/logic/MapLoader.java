@@ -4,10 +4,7 @@ import com.codecool.dungeoncrawl.logic.actors.Ghost;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.Scorpion;
 import com.codecool.dungeoncrawl.logic.actors.Skeleton;
-import com.codecool.dungeoncrawl.logic.items.Coin;
-import com.codecool.dungeoncrawl.logic.items.Key;
-import com.codecool.dungeoncrawl.logic.items.Sword;
-import com.codecool.dungeoncrawl.logic.items.Key_2;
+import com.codecool.dungeoncrawl.logic.items.*;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -42,6 +39,7 @@ public class MapLoader {
                     switch (line.charAt(x)) {
                         case 'q':
                             cell.setType(CellType.APPLE);
+                            new Apple(cell);
                             break;
                         case 'z':
                             cell.setType(CellType.CLOSED_DOOR_2);

@@ -13,4 +13,8 @@ public class Coin extends Item{
         return "coin";
     }
 
+    @Override
+    public String getIsCollectable() {
+        return "yes";
+    }
 }
