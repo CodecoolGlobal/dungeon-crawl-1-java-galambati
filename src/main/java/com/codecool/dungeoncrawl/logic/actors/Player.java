@@ -22,14 +22,7 @@ public class Player extends Actor {
             nextCell.setActor(this);
             cell = nextCell;
         }
-        if (nextCell.getType() == CellType.FLOOR ||
-                nextCell.getType() == CellType.COIN ||
-                nextCell.getType() == CellType.KEY ||
-                nextCell.getType() == CellType.OPENED_DOOR ||
-                nextCell.getType() == CellType.OPENED_DOOR_2 ||
-                nextCell.getType() == CellType.KEY_2 ||
-                nextCell.getType() == CellType.SWORD ||
-                nextCell.getType() == CellType.OPENED_DOOR_3) {
+        if (nextCell.getType().getIsStepAble().equals("yes")) {
             if (nextCell.getType() == CellType.OPENED_DOOR_3) {
                 System.exit(0);
             }

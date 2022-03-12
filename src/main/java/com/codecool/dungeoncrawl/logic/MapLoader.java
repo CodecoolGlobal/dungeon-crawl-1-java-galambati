@@ -40,6 +40,9 @@ public class MapLoader {
                 if (x < line.length()) {
                     Cell cell = map.getCell(x, y);
                     switch (line.charAt(x)) {
+                        case 'q':
+                            cell.setType(CellType.APPLE);
+                            break;
                         case 'z':
                             cell.setType(CellType.CLOSED_DOOR_2);
                             break;
